@@ -159,7 +159,7 @@ void vStartMessageBufferTasks( configSTACK_DEPTH_TYPE xStackSize )
      * other, so must be created at the lowest priority.  The message buffer they
      * use is created and passed in using the task's parameter. */
     xMessageBuffer = xMessageBufferCreate( mbMESSAGE_BUFFER_LENGTH_BYTES );
-    xTaskCreate( prvNonBlockingReceiverTask, "NonBlkRx", xStackSize, ( void * ) xMessageBuffer, tskIDLE_PRIORITY, NULL );
+    xTaskCreate( prvNonBlockingReceiverTask, "NonBlkRx", xStackSize * 2, ( void * ) xMessageBuffer, tskIDLE_PRIORITY, NULL );
     xTaskCreate( prvNonBlockingSenderTask, "NonBlkTx", xStackSize, ( void * ) xMessageBuffer, tskIDLE_PRIORITY, NULL );
 
     #if ( configSUPPORT_STATIC_ALLOCATION == 1 )
